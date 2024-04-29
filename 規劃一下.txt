@@ -1,0 +1,6 @@
+必須使用selenium取得過後的動態html才能爬到我們需要的內容
+而且我們也必須要解決一次查詢500筆的問題(切分縣市、法院或年度)
+所以一開始從selenium著手>搜尋>(搜尋完之後可以抓"下一頁"這個元素裡面有page的網址)>先切過去
+>每個page中(直接點"案例"進去直接抓動態html)>拿給beautifulSoup剖
+
+# get next_page_url and assign to page_url
