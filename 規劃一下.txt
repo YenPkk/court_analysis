@@ -3,4 +3,14 @@
 所以一開始從selenium著手>搜尋>(搜尋完之後可以抓"下一頁"這個元素裡面有page的網址)>先切過去
 >每個page中(直接點"案例"進去直接抓動態html)>拿給beautifulSoup剖
 
+1. selenium拿到page網址後先全部抓下來?然後在一個一個去連?
+2. 直接一個案件一個按件點，進去就取得動態html拿給bs4剖(這個應該比較好，但要如何決定點取的結束?)
+
 # get next_page_url and assign to page_url
+
+# 判斷side bar有沒有出來還是用div那個可能比較好?我怕生出來的時間不一樣?
+## !!!!可以定位li，因為這是之後才生成的
+
+# 阿還要研究一下log怎麼寫
+
+# 最後就寫到json檔
