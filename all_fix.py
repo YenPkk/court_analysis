@@ -197,7 +197,7 @@ for date_split in all_split_date_combination_list:  #從113年取回來
         page_url_list.append(one_page_url) 
 
     #計算一個搜尋的case數量並計算
-    case_counter = 0 
+    case_counter = 1 
     for page in page_url_list:
         driver.get(page)
 
@@ -302,6 +302,7 @@ for date_split in all_split_date_combination_list:  #從113年取回來
             all_case_list.append({
             "id_id":id_id,
             "case_id":str(all[0].get_text().strip()),
+            "case_url":str(case_u),
             "date":str(all[1].get_text().strip()),
             "simple_reason":str(all[2].get_text().strip()),
             "laws":laws_list,
@@ -315,5 +316,5 @@ for date_split in all_split_date_combination_list:  #從113年取回來
 
 # 就寫成dataframe再轉成csv八
 tt = pd.DataFrame(all_case_list)
-tt.to_csv('./all_cases_v3.csv')
+tt.to_csv('./all_cases_v3.csv', index=False)
 
