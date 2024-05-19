@@ -37,14 +37,14 @@ from selenium.webdriver.common.keys import Keys
 
 # 設定log檔案
 import logging
-logger = logging.getLogger('Taiwan_court_kill_cases_v2.log')
+logger = logging.getLogger('Taiwan_court')
 logger.setLevel(logging.INFO) 
 
 # 設定輸出格式
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', "%Y-%m-%d %H:%M:%S")
 
 # 儲存在 log 當中的事件處理器(存在.log檔中)
-fileHandler = logging.FileHandler('Taiwan_court_kill_cases', mode='a', encoding='utf-8') # a: append, w: write  #建構方法
+fileHandler = logging.FileHandler('普通詐欺罪_109.log', mode='a', encoding='utf-8') # a: append, w: write  #建構方法
 fileHandler.setFormatter(formatter)
 
 # 輸出在終端機介面上的事件處理器
@@ -58,8 +58,21 @@ logger.addHandler(fileHandler)
 # 處理日期的list 一組組搜尋寫成一個list這樣用index就可以搜尋了也比較好處理
 all_split_date_combination_list = []
 # 簡單生這樣就好[85,1,1, 6,30], [85,7,1,12,31]
-for i in range(113,84, -1): # 民國113到85
-    month_day_list = [[7,1,12,31], [1,1, 6,30]]
+for i in range(109,108, -1): # 民國113到85
+    month_day_list = [
+                    [12,16,12,31], [12,1, 12,15],
+                    [11,16,11,30], [11,1, 11,15],
+                    [10,16,10,31], [10,1, 10,15],
+                    [9,16,9,30], [9,1, 9,15],
+                    [8,16,8,31], [8,1, 8,15],
+                    [7,16,7,31], [7,1, 7,15],
+                    [6,16,6,30], [6,1, 6,15],
+                    [5,16,5,31], [5,1, 5,15],
+                    [4,16,4,30], [4,1, 4,15],
+                    [3,16,3,31], [3,2, 3,15],
+                    [2,16,3,1], [2,1, 2,15],
+                    [1,16,1,31], [1,1, 1,15],
+                    ]
     for b in month_day_list:
         b.insert(0, i)
         all_split_date_combination_list.append(b)
@@ -95,11 +108,11 @@ for date_split in all_split_date_combination_list:  #從113年取回來
         ))
         input_case_reason = driver.find_element(By.CSS_SELECTOR, 'input#jud_jmain')
         input_case_reason.clear()   
-        input_case_reason.send_keys("殺人")
+        input_case_reason.send_keys("詐欺")
         
         input_case_content = driver.find_element(By.CSS_SELECTOR, 'input#jud_kw')
         input_case_content.clear()
-        input_case_content.send_keys("中華民國刑法第 271 條&刑事判決")
+        input_case_content.send_keys("刑法第339條&刑事判決")
         
         input_date_from_year = driver.find_element(By.CSS_SELECTOR, 'input#dy1')
         input_date_from_month = driver.find_element(By.CSS_SELECTOR, 'input#dm1')
@@ -316,5 +329,5 @@ for date_split in all_split_date_combination_list:  #從113年取回來
 
 # 就寫成dataframe再轉成csv八
 tt = pd.DataFrame(all_case_list)
-tt.to_csv('./all_cases_v3.csv', index=False)
+tt.to_csv('./普通詐欺罪_109.csv', index=False)
 
